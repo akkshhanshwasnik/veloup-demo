@@ -1,0 +1,109 @@
+/* Fonts are hosted on this site (assets/fonts): faster, and no visitor data goes to Google. */
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; font-style: normal; font-display: swap; src: url('../assets/fonts/bricolage-grotesque-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Caveat'; font-weight: 600; font-style: normal; font-display: swap; src: url('../assets/fonts/caveat-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-weight: 400; font-style: normal; font-display: swap; src: url('../assets/fonts/dm-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-weight: 500; font-style: normal; font-display: swap; src: url('../assets/fonts/dm-sans-latin-500-normal.woff2') format('woff2'); }
+
+/* VeloUp design tokens. Source of truth: DESIGN.md. Change a value here and it changes everywhere. */
+
+:root {
+  /* Colours (DESIGN.md section 2) */
+  --midnight: #120E26;          /* dark backgrounds; body text on light backgrounds */
+  --midnight-raised: #1E1838;   /* cards and panels on dark */
+  --violet: #6D28D9;            /* buttons, links on light backgrounds */
+  --violet-dark: #5B21B6;       /* button hover / pressed */
+  --lavender: #C4B5FD;          /* accents on DARK backgrounds only */
+  --cyan: #67E8F9;              /* the arrow tip only, used sparingly */
+  --white: #FFFFFF;
+  --tint: #F5F3FF;              /* alternate light section background */
+  --text-muted: #4B4666;        /* secondary text on light */
+  --text-muted-dark: #B8B3CC;   /* secondary text on Midnight */
+  --error: #B42318;             /* form errors only */
+  --cream: #FFF8EE;             /* page background (Warm Loop) */
+  --paper: #FFFDF8;             /* raised strips, white sticky notes, panels */
+  --lav-soft: #EDE7FF;          /* lavender sticky notes, slider track */
+  --rule: #E9DFCF;              /* thin dividers on cream */
+
+  /* Borders and shadows */
+  --border-light: 1px solid rgba(18, 14, 38, 0.12);
+  --border-dark: 1px solid rgba(196, 181, 253, 0.18);
+  --shadow-soft: 0 8px 24px rgba(18, 14, 38, 0.10);
+  --glow-violet: 0 8px 24px rgba(109, 40, 217, 0.35);
+
+  /* Fonts (DESIGN.md section 3). Weights are set in style.css. */
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;   /* handwritten notes and asides only */
+
+  /* Type scale: phone first (DESIGN.md section 3) */
+  --fs-display: 3rem;      /* 48px */
+  --fs-h1: 2rem;           /* 32px */
+  --fs-h2: 1.625rem;       /* 26px */
+  --fs-h3: 1.25rem;        /* 20px */
+  --fs-lead: 1.125rem;     /* 18px */
+  --fs-body: 1rem;         /* 16px */
+  --fs-button: 1rem;       /* 16px */
+  --fs-small: 0.875rem;    /* 14px */
+  --fs-smallest: 0.8125rem;/* 13px */
+
+  --lh-display: 1.1;
+  --lh-h1: 1.15;
+  --lh-h2: 1.2;
+  --lh-h3: 1.3;
+  --lh-body: 1.6;
+
+  /* Spacing scale: base unit 4px */
+  --space-1: 0.25rem;  /* 4  */
+  --space-2: 0.5rem;   /* 8  */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+
+  /* Layout */
+  --container: 1120px;
+  --pad: 1.25rem;          /* 20px side padding on phone */
+  --section-pad: 4rem;     /* 64px on phone */
+  --header-h: 4rem;        /* 64px on phone */
+  --action-bar-h: 4rem;    /* 64px mobile bottom bar */
+
+  /* Shape */
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --radius-chat: 20px;
+  --radius-ink: 16px 16px 16px 4px;  /* speech-bubble corner on buttons and panels */
+
+  /* Motion (DESIGN.md section 11) */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-hover: 200ms;
+  --dur-reveal: 600ms;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+    --pad: 2rem;            /* 32px */
+    --section-pad: 6rem;    /* 96px */
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root {
+    --fs-display: 5.25rem;  /* 84px */
+    --fs-h1: 2.75rem;       /* 44px */
+    --fs-h2: 2.125rem;      /* 34px */
+    --fs-h3: 1.375rem;      /* 22px */
+    --fs-lead: 1.25rem;     /* 20px */
+    --fs-body: 1.0625rem;   /* 17px */
+
+    --pad: 3rem;            /* 48px */
+    --section-pad: 8rem;    /* 128px */
+    --header-h: 4.5rem;     /* 72px */
+  }
+}

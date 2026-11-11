@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex">
+  <title>Salon Booking Assistant Demo - VeloUp</title>
+  <meta name="description" content="Try VeloUp's WhatsApp appointment assistant for salons. Book in plain language, get the nearest free slots, reminders and rebooking, all automatic.">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/salon.css?v=7">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+</head>
+<body class="salon">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div id="header-container">
+    <header class="site-header site-header--fallback">
+      <div class="container header-inner">
+        <a class="logo" href="https://veloup.in/" aria-label="VeloUp home"><svg class="logo-mark" viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M100 50 C100 67 79 71 68 57 C59 45 52 27 35 27 C20 27 13 38 13 48 C13 63 31 69 45 56 C58 44 70 31 90 17" fill="none" stroke="#C4B5FD" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(92 15) rotate(-48)" d="M13 0 L-5 -12 L-5 12 Z" fill="#67E8F9" stroke="#67E8F9" stroke-width="5" stroke-linejoin="round"/></svg><span class="logo-velo">Velo</span><span class="logo-up">Up</span></a>
+        <nav class="site-nav site-nav--fallback" aria-label="Main">
+          <ul class="nav-list"><li><a href="https://veloup.in/">Home</a></li><li><a href="https://veloup.in/services.html">Services</a></li><li><a href="https://veloup.in/how-it-works.html">How it works</a></li><li><a href="https://veloup.in/about.html">About</a></li><li><a href="https://veloup.in/faq.html">FAQ</a></li><li><a href="https://veloup.in/contact.html">Contact</a></li></ul>
+        </nav>
+        <a class="btn btn-primary header-cta" href="https://veloup.in/contact.html">Book a free 15-minute call</a>
+      </div>
+    </header>
+  </div>
+
+  <main id="main-content">
+    <section class="hero wl-hero salon-hero">
+      <div class="container">
+        <p class="hand">Namaste, salon owners &mdash;</p>
+        <h1 class="display">Every client books in <span class="nw"><span class="circ">one message<svg viewBox="0 0 300 120" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M40 50 C15 60 10 85 30 95 C80 118 250 120 280 90 C300 60 280 20 200 12 C120 5 10 20 20 70" stroke="#C4B5FD" stroke-width="7" stroke-linecap="round"/></svg></span>.</span> No menus, <span class="v">no missed bookings.</span></h1>
+        <p class="lead">Type the way a real client would, in English or Hinglish, for example <span class="say">kal shaam haircut Baner</span>. The assistant finds a free stylist, offers the nearest slots when the time is taken, confirms the booking and sends reminders. The salon's dashboard updates live as you chat.</p>
+      </div>
+    </section>
+
+    <section class="salon-demo" aria-label="Interactive demo">
+      <div class="container salon-grid">
+        <div class="salon-phone-col">
+          <div class="phone">
+            <div class="phone-screen" id="screen">
+              <div class="phone-top">
+                <span class="phone-av" id="avatar" aria-hidden="true">S&amp;S</span>
+                <span><b class="phone-name" id="salonName">Saffron &amp; Shears</b><small id="waStatus">WhatsApp · AI assistant · replies instantly</small></span>
+              </div>
+              <div class="demo-chat" id="chat" role="log" aria-live="polite" aria-label="Chat with the salon"></div>
+              <a class="live-strip" id="liveStrip" href="#dashboard" hidden><span id="liveText"></span><span class="ls-go">See dashboard &darr;</span></a>
+              <form class="wa-input" id="form" autocomplete="off">
+                <input id="inp" placeholder="Type a message" aria-label="Message" enterkeyhint="send">
+                <button class="send" type="submit" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+              </form>
+              <div class="sheet-bg" id="sheetBg"></div>
+              <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+                <div class="sheet-h"><span id="sheetTitle">Options</span><button id="sheetX" type="button" aria-label="Close">&times;</button></div>
+                <div class="sheet-list" id="sheetList"></div>
+                <div class="sheet-foot">Tap an item to select it</div>
+              </div>
+            </div>
+          </div>
+          <div class="tries">
+            <p class="stage-cap">Try typing like a real client</p>
+            <div class="scene-tabs" id="tries" role="group" aria-label="Example messages">
+              <button class="scene-tab" type="button">Hi</button>
+              <button class="scene-tab" type="button">Men's haircut tomorrow 6pm in Baner</button>
+              <button class="scene-tab" type="button">kal shaam beard trim Koregaon Park</button>
+              <button class="scene-tab" type="button">Facial and pedicure on Saturday morning</button>
+              <button class="scene-tab" type="button">Women's haircut with Riya on Saturday</button>
+              <button class="scene-tab" type="button">What are your prices?</button>
+              <button class="scene-tab" type="button">Any offers?</button>
+              <button class="scene-tab" type="button">Reschedule my booking</button>
+            </div>
+            <button class="btn-text reset" id="reset" type="button">Restart demo</button>
+          </div>
+        </div>
+
+        <div class="panel on-dark" id="dashboard" aria-label="Salon dashboard">
+          <div class="panel-h">
+            <div><h2>Salon dashboard</h2><p class="sub">What the owner and front desk see</p></div>
+            <span class="live">Live</span>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="k">Bookings via bot</div><div class="v" id="sBook">0</div></div>
+            <div class="stat"><div class="k">Time to book</div><div class="v" id="sTime">&ndash;</div></div>
+            <div class="stat"><div class="k">Revenue booked</div><div class="v" id="sRev">&#8377;0</div></div>
+            <div class="stat"><div class="k">Add-ons sold</div><div class="v" id="sAdd">&#8377;0</div></div>
+            <div class="stat"><div class="k">Booked after hours</div><div class="v" id="sAfter">0</div></div>
+            <div class="stat"><div class="k">Front-desk time saved <abbr title="estimate: about 4 minutes per booking taken by phone">est.</abbr></div><div class="v" id="sSaved">0</div></div>
+          </div>
+          <div class="plan">
+            <div class="plan-h">
+              <h3>Day planner · <em id="schedFor">&ndash;</em></h3>
+              <div class="scene-tabs br-tabs" id="brTabs" role="group" aria-label="Show branch"></div>
+            </div>
+            <div class="plan-wrap" id="planWrap"><div class="planner" id="sched"></div></div>
+          </div>
+          <div class="cols">
+            <div class="col">
+              <h3><span>Client card</span></h3>
+              <div id="client"></div>
+            </div>
+            <div class="col">
+              <h3><span>What the assistant is doing</span></h3>
+              <div class="feed" id="feed" aria-live="polite"></div>
+            </div>
+          </div>
+          <p class="panel-foot" id="pFoot"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-tint">
+      <div class="container">
+        <div class="need-grid compare">
+          <div class="need-card cmp-old">
+            <h2>A typical menu bot</h2>
+            <ul class="cmp-list">
+              <li>8&ndash;10 taps through fixed menus: city, store, gender, service, date, time</li>
+              <li>Doesn't understand typed messages like "haircut tomorrow evening"</li>
+              <li>"No slots available, choose another date" ends the conversation</li>
+              <li>No reminders, no follow-up, and a client who drops off is lost</li>
+            </ul>
+          </div>
+          <div class="need-card cmp-new">
+            <h2>The <span class="v">VeloUp</span> booking assistant</h2>
+            <ul class="cmp-list">
+              <li>Books from one natural message, in English or Hinglish</li>
+              <li>Asks only for what's missing and offers the nearest free slot and stylist</li>
+              <li>Suggests add-ons and memberships at the right moment to raise the bill value</li>
+              <li>Sends reminders, asks for a Google review and books the next visit, which cuts no-shows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band on-dark">
+      <div class="container">
+        <p class="hand">we set it up on your own WhatsApp number</p>
+        <h2>Want this for <span>your salon?</span></h2>
+        <div class="cta-actions">
+          <a class="btn btn-primary btn-lg" href="https://veloup.in/contact.html" data-book>Book a free 15-minute call</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="container demo-note">Demo with a fictional salon. Prices, stylists and bookings are made up for illustration.</p>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/salon.js?v=7"></script>
+</body>
+</html>
