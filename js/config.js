@@ -3,7 +3,7 @@
 
 const config = {
   bookingLink: "https://calendly.com/akkshhanshwasnik-veloup/free-call",
-  whatsappNumber: "+91XXXXXXXXXX",
+  whatsappNumber: "+918669614407",
   businessEmail: "hello@veloup.in",
   formEndpoint: "[APPS SCRIPT WEB APP ADDRESS]",
   whatsappMessage: "Hi, I'd like to know more about VeloUp"
