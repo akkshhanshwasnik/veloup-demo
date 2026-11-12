@@ -44,7 +44,10 @@
     var digits = raw.replace(/\D/g, '');
     if (/x/i.test(raw) || digits.length < 8) { return 'contact.html'; }
     var text = cfg.whatsappMessage || "Hi, I'd like to know more about VeloUp";
-    return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(text);
+    // Phones: wa.me opens the WhatsApp app. Computers: go straight to WhatsApp Web, because
+    // wa.me's "Continue to chat" does nothing in Chrome when the desktop app isn't installed.
+    var phone = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+    return (phone ? 'https://wa.me/' + digits + '?text=' : 'https://web.whatsapp.com/send?phone=' + digits + '&text=') + encodeURIComponent(text);
   }
 
   // Extra attributes for links that leave the site (open in a new tab safely).
